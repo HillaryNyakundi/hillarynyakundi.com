@@ -1,0 +1,53 @@
+---
+title: Leveraging Cloud for Data Protection Compliance
+date: '2022-07-01'
+tags: ['Cloud', 'Data Privacy']
+draft: false
+summary: Insights on using Cloud for Data Protection Compliance
+images: ['/static/images/data_protection_in_cloud.png']
+authors: ['default']
+---
+
+Over the last couple of years, countries have adopted data protection regulations, appreciating the need to protect citizen data against unauthorized or unlawful processing, loss, theft, destruction, or damage. Such regulations include the [General Data Protection Regulation (GDPR)](https://gdpr-info.eu/), [Kenya Data Protection Act (KDPA)](https://www.odpc.go.ke/download/kenya-gazette-data-protection-act-2019/) and the [Uganda Data Protection and Privacy Act (UDPPA)](https://ict.go.ug/wp-content/uploads/2019/03/Data-Protection-and-Privacy-Act-2019.pdf).
+
+![data-protection-in-cloud](/static/images/data_protection_in_cloud.png)
+
+Organizations of all sizes are required to comply with the data protection regulations as long as they collect and/or process customer data in their business operations. Many Small and Medium Enterprises (SMEs) have been left lagging behind as they try to harness their meager resources towards this effort. Most of these SMEs are also running their critical business operations on legacy systems that require re-architecting to be able to adapt to the new requirements.
+
+## Cloud Computing
+
+Cloud computing allows trading of capital expense (CapEx) for variable expense (OpEx). SMEs no longer need to invest in data centers and servers but can just focus on delivering new products leveraging the on demand provisioned resources and only pay for what they have consumed. Additionally, security responsibility is partially delegated to the cloud provider with most providers supporting out of the box disk encryption and secure deployment of legacy applications.
+
+SMEs can leverage cloud computing services to satisfy data protection compliance requirements in a cost effective way. Embedded and Automated tools such as AWS Security Hub, AWS Config and AWS CloudTrail can help in validating compliance as well as conducting Data Protection Impact Assessments (DPIA).
+
+## Data Compliance Requirements
+
+Some of the common data protection requirements among many regulatory agencies include:- privacy by design, data classification and retention, cross-border data management, third-party risk management and data breach management. The following below is a brief overview of how these requirements can be met using AWS cloud services.
+
+### Privacy by design
+
+The privacy by design concept requires every data controller or data processor to implement appropriate privacy checkpoints or gates in the methodology for designing products or technology solutions to ensure that the applications, systems, and accounts, among other things are secured by default. AWS supports an automated software development process through Continuous Integration and Continuous Delivery (CI/CD).
+
+Open source SCA, SAST and DAST tools can be incorporated into this process to create an end-to-end AWS DevSecOps CI/CD pipeline that encompasses the requisite data protection controls. Resources are securely deployed in logically separated network zones through [AWS Virtual Private Cloud](https://aws.amazon.com/vpc/) (VPC)s while logging and monitoring of events within the environment is managed through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) and [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
+
+### Data classification and retention
+
+The data classification and life cycle management requirement mandates data controller and data processors to organize their stored data based on assumed risk. Such data should not be kept longer than is necessary for the purposes for which it was collected or processed. A lifecycle management policy-based approach should be taken to manage the flow of data from creation/collection, initial storage till when it becomes obsolete and is deleted.
+
+[AWS Macie](https://aws.amazon.com/macie/) is an advanced tool that makes use of machine learning and pattern matching to automatically discover and classify sensitive data, such as personally identifiable information (PII) within AWS. [Amazon S3](https://docs.aws.amazon.com/s3/index.html) Lifecycle configuration has a set of rules that define actions that Amazon S3 applies to a group of data objects. Data objects can be transitioned from one storage class to another or even deleted once they expire.
+
+### Cross-border data management
+
+The data management across boarders regulation requires that data controllers or data processors should provide evidence of implementation of appropriate safeguards with respect to the security and protection of the personal data in case such data needs to transferred across the boarder. Amazon provides strong disk and object storage encryption for data at rest, and also supports encryption of data in transit through SSL/TLS and VPN encryption algorithms.
+
+Amazon Virtual Private Cloud (Amazon VPC) provides a seamless extension of customers existing on-premises resources, allowing provision of resources in a logically isolated virtual network. The customer has complete control over this environment which can be distributed globally in multiple regions and data centers.
+
+### Third-party risk management
+
+When a data controller engages the services of a data processor, the data processor acts as an agent of the data controller. The data processor is therefore mandated to adhere to the same data protection regulations as the data controller. Through [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM), fine-grained access to resources can be managed by specifying who can access which services and resources, and under which conditions. IAM roles can be used to securely grant third-parties access to resources ensuring least-privilege permissions, accountability and auditing.
+
+### Data breach management
+
+Data protection regulations require that personal data breaches should be promptly identified and reported. AWS Macie automatically provides an inventory of Amazon S3 buckets including a list of unencrypted buckets, publicly accessible buckets, and buckets shared with AWS accounts outside those defined in [AWS Organizations](https://aws.amazon.com/organizations/). Macie can be integrated with [Amazon EventBridge](https://aws.amazon.com/eventbridge/) to send alerts with the findings of personal data exposure and even use AWS Step Functions to take automated remediation actions.
+
+[Amazon GuardDuty](https://aws.amazon.com/guardduty/) is a threat detection service that uses machine learning and behavior models to detect threats such as account compromise and unusual data access or communications in AWS accounts. Coupled with AWS Cloud Trail that records all API calls to track user activity, data breaches within AWS accounts can be promptly alerted, quickly investigated, reported and remediated.

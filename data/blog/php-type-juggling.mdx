@@ -1,0 +1,65 @@
+---
+title: Authentication Bypass Through PHP Type Juggling
+date: '2022-05-14'
+tags: ['PHP', 'Type Juggling', 'IAM', 'Bug Bounty']
+draft: false
+summary: Demonstrating authentication bypass by exploiting PHP Type Juggling
+images: ['/static/images/php-image.png']
+authors: ['default']
+---
+
+![php-logo](/static/images/php-image.png)
+
+PHP supports two common ways of comparing variables. One way is through `loose comparison` (== or !=) and the other is through `strict comparison` (=== or !==). Loose comparison checks whether both variables have “the same value” while strict comparison confirms if both variables have “the same type and value”. PHP type juggling vulnerabilities arise when loose comparison is employed instead of strict comparison in an area where the attacker can control one of the variables being compared.
+
+## Illustration
+
+When PHP needs to compare a string with an integer, PHP will attempt to extract the integer from the string. So a comparison like `‘2 books’ == 2` will evaluate to `True`. If the string that is being compared does not contain an integer, then string will then be converted to a “0” hence `‘books’ == 0` will evaluate to `True`.
+
+```PHP
+if('2 books' == 2){echo "True"; } else {echo "False";}
+True
+
+if('1234' == '1234'){echo "True"; } else {echo "False";}
+True
+
+if('1234' == 1234){echo "True"; } else {echo "False";}
+True
+
+if('abc' == 0) {echo "True"; } else {echo "False";}
+True
+
+if('xyz' == true) {echo "True"; } else {echo "False";}
+True
+
+if('xyz' == 'true') {echo "True"; } else {echo "False";}
+False
+
+if('books' == 0){echo "True"; }  else {echo "False";}
+True
+```
+
+## Authentication Bypass Vulnerability
+
+Loose type comparison behavior in PHP can be exploited to allow authentication bypass. In the following below code snippet, submitting an integer input `0` or boolean input `true` will successfully authenticate you as an administrator.
+
+```PHP:auth.php
+if($_POST["password"] == "Admin_Password") {
+go_to_admin_dashboard();
+}
+```
+
+I have created a trivial challenge here:- https://php-type-juggling.herokuapp.com/
+
+Try bypass authentication to retrieve the JWT auth token and flag.
+
+## Remediation
+
+PHP type juggling vulnerabilities can be avoided by making use strict comparison using three equals symbols (===) instead of two (==). This also applies for !=, which should be avoided in favor of !==. This makes sure that the type is taken into consideration when comparing the values.
+
+## References
+
+- Challenge URL – [https://php-type-juggling.herokuapp.com](https://php-type-juggling.herokuapp.com/)
+- Challenge Source Code – [https://github.com/bensonmacharia/php-type-juggling](https://github.com/bensonmacharia/php-type-juggling)
+- OWASP: [PHP Magic Tricks: Type Juggling](https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf)
+- IppSec: [PHP Type Juggling – Why === is Important – Bug Bounty Tips](https://www.youtube.com/watch?v=idC5SAsKhlE)

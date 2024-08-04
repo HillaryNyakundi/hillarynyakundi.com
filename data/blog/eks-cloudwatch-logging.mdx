@@ -1,0 +1,18 @@
+---
+title: API Logging on EKS with Cloudwatch
+date: '2023-02-07'
+tags: ['Cloud', 'AWS', 'AWS Cloudwatch', 'AWS EKS']
+draft: false
+summary: A guide to configure API logging on EKS with AWS Cloudwatch
+images: ['/static/images/golang_logrus_eks.png']
+authors: ['default']
+---
+
+![golang_logrus_eks_cloudwatch](/static/images/golang_logrus_eks_cloudwatch.png)
+
+With the API-first approach of building software products becoming prominent and APIs now making up the most common communication channel for internet traffic, API security becomes paramount.
+API logging and monitoring is a key component in securing APIs, amongst others that include discovery, vulnerability management and compliance. APIs should have an inbuilt mechanism to collect access and transaction activities which can aid in their monitoring to identify potentially malicious activity.
+
+Golang being one of the most popular frameworks for developing APIs due to its performance and support for concurrency, I have created a guide to aid developers collect API logs through the [Go LogRus](https://github.com/sirupsen/logrus) library and forward such to [AWS CloudWatch](https://aws.amazon.com/cloudwatch/) from a microservice deployed in [AWS EKS](https://aws.amazon.com/eks/).
+
+[Read more](https://betterprogramming.pub/aws-cloudwatch-logging-for-golang-microservices-on-eks-with-logrus-and-fluent-bit-3a6f62be5a18)
