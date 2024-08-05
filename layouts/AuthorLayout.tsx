@@ -28,7 +28,7 @@ export default function AuthorLayout({ children, content }: Props) {
                   alt="avatar"
                   width={192}
                   height={192}
-                  className="h-48 w-48 rounded-full"
+                  className="h-30 w-30 rounded-full dark:border-2 dark:border-primary-400"
                 />
               </div>
             )}
@@ -39,7 +39,9 @@ export default function AuthorLayout({ children, content }: Props) {
               <div className="text-lg text-gray-500 dark:text-gray-400 xl:text-base">
                 {occupation}
               </div>
-              <div className="text-lg text-gray-500 dark:text-gray-400 xl:text-base">{company}</div>
+              <div className="text-lg text-primary-500 dark:text-primary-400 xl:text-base">
+                {company}
+              </div>
               <div className="flex space-x-3 pt-6">
                 <SocialIcon kind="mail" href={`mailto:${email}`} />
                 <SocialIcon kind="github" href={github} />

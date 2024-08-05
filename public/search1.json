@@ -1,0 +1,207 @@
+[
+  {
+    "title": "Using Talon's mimic( ) function",
+    "date": "2024-03-11T00:00:00.000Z",
+    "tags": ["Talon Voice", "Terminal"],
+    "draft": false,
+    "summary": "Quick and dirty terminal function for using Talon's mimic( )",
+    "authors": ["trilliumsmith"],
+    "type": "Blog",
+    "readingTime": {
+      "text": "4 min read",
+      "minutes": 3.76,
+      "time": 225600,
+      "words": 752
+    },
+    "slug": "piping_mimic_commands_to_talon",
+    "path": "blog/piping_mimic_commands_to_talon",
+    "filePath": "blog/piping_mimic_commands_to_talon.mdx",
+    "toc": [
+      {
+        "value": "What does m do? (lowercase)",
+        "url": "#what-does-m-do-lowercase",
+        "depth": 2
+      },
+      {
+        "value": "What's with the > /dev/null",
+        "url": "#whats-with-the--devnull",
+        "depth": 3
+      },
+      {
+        "value": "What does M do? (uppercase)",
+        "url": "#what-does-m-do-uppercase",
+        "depth": 2
+      },
+      {
+        "value": "When is this actually a terrible choice to test something",
+        "url": "#when-is-this-actually-a-terrible-choice-to-test-something",
+        "depth": 2
+      }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Using Talon's mimic( ) function",
+      "datePublished": "2024-03-11T00:00:00.000Z",
+      "dateModified": "2024-03-11T00:00:00.000Z",
+      "description": "Quick and dirty terminal function for using Talon's mimic( )",
+      "image": "/static/images/twitter-card.png",
+      "url": "https://trilliumsmith.com//blog/piping_mimic_commands_to_talon"
+    }
+  },
+  {
+    "title": "Talon Voice, the Start of the Journey",
+    "date": "2024-02-19T00:00:00.000Z",
+    "tags": ["Talon Voice"],
+    "lastmod": "2021-02-01T00:00:00.000Z",
+    "draft": false,
+    "summary": "Embarking on the journey of Voice Coding",
+    "images": ["/static/images/turtle.jpg"],
+    "authors": ["default"],
+    "type": "Blog",
+    "readingTime": {
+      "text": "6 min read",
+      "minutes": 5.695,
+      "time": 341700,
+      "words": 1139
+    },
+    "slug": "talon-voice-the-start-of-the-journey",
+    "path": "blog/talon-voice-the-start-of-the-journey",
+    "filePath": "blog/talon-voice-the-start-of-the-journey.mdx",
+    "toc": [
+      {
+        "value": "What is Talon Voice",
+        "url": "#what-is-talon-voice",
+        "depth": 2
+      },
+      {
+        "value": "2021 - Planting the seed",
+        "url": "#2021---planting-the-seed",
+        "depth": 2
+      },
+      {
+        "value": "What exactly needs to be learned",
+        "url": "#what-exactly-needs-to-be-learned",
+        "depth": 2
+      },
+      {
+        "value": "2022 - Dabbling",
+        "url": "#2022---dabbling",
+        "depth": 2
+      },
+      {
+        "value": "2023 - Buying too many useless things",
+        "url": "#2023---buying-too-many-useless-things",
+        "depth": 2
+      },
+      {
+        "value": "2024",
+        "url": "#2024",
+        "depth": 2
+      },
+      {
+        "value": "2024 - Finally...",
+        "url": "#2024---finally",
+        "depth": 2
+      },
+      {
+        "value": "What's next",
+        "url": "#whats-next",
+        "depth": 2
+      },
+      {
+        "value": "Additional odds and ends",
+        "url": "#additional-odds-and-ends",
+        "depth": 2
+      }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Talon Voice, the Start of the Journey",
+      "datePublished": "2024-02-19T00:00:00.000Z",
+      "dateModified": "2021-02-01T00:00:00.000Z",
+      "description": "Embarking on the journey of Voice Coding",
+      "image": "/static/images/turtle.jpg",
+      "url": "https://trilliumsmith.com//blog/talon-voice-the-start-of-the-journey"
+    }
+  },
+  {
+    "title": "Wakey Wakey!",
+    "date": "2024-02-02T00:00:00.000Z",
+    "tags": ["Talon Voice"],
+    "draft": false,
+    "summary": "Having fun with waking up Talon Voice",
+    "type": "Blog",
+    "readingTime": {
+      "text": "1 min read",
+      "minutes": 0.61,
+      "time": 36600,
+      "words": 122
+    },
+    "slug": "wakey-wakey",
+    "path": "blog/wakey-wakey",
+    "filePath": "blog/wakey-wakey.mdx",
+    "toc": [
+      {
+        "value": "What's with the | symbol and the wiki words",
+        "url": "#whats-with-the--symbol-and-the-wiki-words",
+        "depth": 2
+      }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Wakey Wakey!",
+      "datePublished": "2024-02-02T00:00:00.000Z",
+      "dateModified": "2024-02-02T00:00:00.000Z",
+      "description": "Having fun with waking up Talon Voice",
+      "image": "/static/images/twitter-card.png",
+      "url": "https://trilliumsmith.com//blog/wakey-wakey"
+    }
+  },
+  {
+    "title": "Cellphone as Trackpad for Talon Voice",
+    "date": "2021-01-02T00:00:00.000Z",
+    "tags": ["Talon Voice", "Remote Desktop"],
+    "draft": false,
+    "summary": "Use your cellphone as a trackpad when in conjunction with Talon Voice",
+    "type": "Blog",
+    "readingTime": {
+      "text": "2 min read",
+      "minutes": 1.98,
+      "time": 118800,
+      "words": 396
+    },
+    "slug": "remote-desktop-with-cellphone",
+    "path": "blog/remote-desktop-with-cellphone",
+    "filePath": "blog/remote-desktop-with-cellphone.mdx",
+    "toc": [
+      {
+        "value": "Chrome Remote Desktop",
+        "url": "#chrome-remote-desktop",
+        "depth": 2
+      },
+      {
+        "value": "Getting started",
+        "url": "#getting-started",
+        "depth": 2
+      },
+      {
+        "value": "Remote Desktop and Talon Voice",
+        "url": "#remote-desktop-and-talon-voice",
+        "depth": 2
+      }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Cellphone as Trackpad for Talon Voice",
+      "datePublished": "2021-01-02T00:00:00.000Z",
+      "dateModified": "2021-01-02T00:00:00.000Z",
+      "description": "Use your cellphone as a trackpad when in conjunction with Talon Voice",
+      "image": "/static/images/twitter-card.png",
+      "url": "https://trilliumsmith.com//blog/remote-desktop-with-cellphone"
+    }
+  }
+]
