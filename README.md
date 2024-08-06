@@ -15,9 +15,18 @@ This blog is made with:
 [![Prettier][prettier-shield]][prettier-url]
 [![Nextjs][nextjs-shield]][nextjs-url]
 
+## Run in Dev
+
+```bash
+$ yarn install
+$ yarn dev
+```
+
 ## Contact
 
 Benson Macharia - bm@bmacharia.com
+
+If you'd like to create a blog of your own you're welcome to fork this repo, but I'd suggest starting from [tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) instead and start customizing from there.
 
 <!-- Built With shields -->
 
