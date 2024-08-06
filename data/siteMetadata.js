@@ -8,10 +8,12 @@ const siteMetadata = {
   headerTitle: 'Benson Macharia',
   location: 'Nairobi, KE',
   openToWork: true,
-  description: 'The enigma of security engineering is mastering the art of anticipating the unknown.',
+  description:
+    'The enigma of security engineering is mastering the art of anticipating the unknown.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://bmacharia.com/',
+  analyticsURL: 'https://cloud.umami.is/share/YFlsghokJZeRDaDI/bmacharia.com',
   siteRepo: 'https://github.com/bensonmacharia',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',

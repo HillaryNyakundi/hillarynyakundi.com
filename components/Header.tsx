@@ -6,6 +6,7 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import OpenToWorkBadge from './ui/OpenToWorkBadge'
 import { NavOptions } from './NavOptions'
+import AnalyticsLink from './AnalyticsLink'
 
 const Header = () => {
   return (
@@ -32,6 +33,7 @@ const Header = () => {
       </div>
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         <NavOptions />
+        <AnalyticsLink />
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
