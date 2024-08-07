@@ -1,18 +1,15 @@
 <a name="readme-top"></a>
 
-# Welcome to my blog site :)
+# Good to see you here 👋
 
 ![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
-This blog is made with:
+This blog has been developed with:
 
 [![React][react-shield]][react-url]
 [![Tailwind][tailwind-shield]][tailwind-url]
 [![Markdown][markdown-shield]][markdown-url]
-[![Nextjs][typescript-shield]][typescript-url]
-[![Netlify][netlify-shield]][netlify-url]
-[![Headless UI][headless-shield]][headless-url]
-[![Prettier][prettier-shield]][prettier-url]
+[![TypeScript][typescript-shield]][typescript-url]
 [![Nextjs][nextjs-shield]][nextjs-url]
 
 ## Run in Dev
@@ -22,11 +19,17 @@ $ yarn install
 $ yarn dev
 ```
 
+## Deploy on Cpanel
+
+You can follow this [detailed guide](https://medium.com/@geevadon/how-to-deploy-a-next-js-app-on-cpanel-efficiently-c00c5eb860de) on how to deploy this via cPanel.
+
+## Attribution
+
+This blog was created from customising the [tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) and borrowing some design features from [trilliumsmith.com](https://github.com/trillium/trilliumsmith.com/tree/main)
+
 ## Contact
 
-Benson Macharia - bm@bmacharia.com
-
-If you'd like to create a blog of your own you're welcome to fork this repo, but I'd suggest starting from [tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) instead and start customizing from there.
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- Built With shields -->
 
@@ -34,17 +37,14 @@ If you'd like to create a blog of your own you're welcome to fork this repo, but
 [react-url]: https://react.dev/
 [tailwind-shield]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [tailwind-url]: https://tailwindcss.com/
-[netlify-shield]: https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white
-[netlify-url]: https://www.netlify.com/
 [markdown-shield]: https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white
 [markdown-url]: https://www.markdownguide.org/
-[headless-shield]: https://img.shields.io/badge/Headless%20ui-000000?style=for-the-badge&logo=headlessui&logoColor=7dd3fc
-
-[headless-url]: https://headlessui.com/]
-
-[prettier-shield]: https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E
-[prettier-url]: https://prettier.io/
 [nextjs-shield]: https://img.shields.io/badge/nextjs-000000?style=for-the-badge&logo=next.js&logoColor=white
 [nextjs-url]: https://prettier.io/
 [typescript-shield]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [typescript-url]: https://www.typescriptlang.org/
+
+<!-- Contacts -->
+
+[linkedin-shield]: https://img.shields.io/badge/LinkedIn-white?style=for-the-badge&logo=linkedin&colorB=0a66c2
+[linkedin-url]: https://www.linkedin.com/in/benson-macharia
