@@ -27,6 +27,14 @@ export default function Footer() {
           <div className="whitespace-nowrap">{`© ${new Date().getFullYear()}`}</div>
         </div>
       </div>
+      <div className="mb-8 flex justify-center text-center text-sm">
+        <Link
+          href={siteMetadata.siteRepo}
+          className="text-gray-500 underline underline-offset-4 dark:text-gray-400"
+        >
+          <span data-umami-event="view-source">View source</span>
+        </Link>
+      </div>
     </footer>
   )
 }

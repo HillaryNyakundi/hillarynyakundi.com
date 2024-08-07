@@ -1,5 +1,3 @@
-import siteMetadata from '@/data/siteMetadata'
-
 import BrandIcon from '@/components/ui/BrandIcon'
 import Link from '@/components/Link'
 
@@ -18,13 +16,6 @@ const BuiltWith = () => (
         <BrandIcon type="Typescript" className="h-5 w-5" />
       </Link>
     </div>
-    {/* <span className="px-1 text-gray-400 dark:text-gray-500">-</span>
-    <Link
-      href={siteMetadata.siteRepo}
-      className="text-gray-500 underline underline-offset-4 dark:text-gray-400"
-    >
-      <span data-umami-event="view-source">View source</span>
-    </Link> */}
   </div>
 )
 

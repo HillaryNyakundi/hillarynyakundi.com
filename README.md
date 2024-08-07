@@ -1,10 +1,10 @@
 <a name="readme-top"></a>
 
-# Good to see you here 👋
+# Hi! 👋 Good to see you here
 
 ![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
-This blog has been developed with:
+This blog was developed with:
 
 [![React][react-shield]][react-url]
 [![Tailwind][tailwind-shield]][tailwind-url]

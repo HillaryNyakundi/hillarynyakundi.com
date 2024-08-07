@@ -1,10 +1,21 @@
 import Image from './Image'
 import SocialIcon from '@/components/social-icons'
 import siteMetadata from '@/data/siteMetadata'
+import { RoughNotation } from 'react-rough-notation'
 
 const AuthorCard = ({ content }) => {
-  const { author, avatar, occupation, company, email, devto, x, linkedin, github, location } =
-    siteMetadata
+  const {
+    author,
+    avatar,
+    occupation,
+    qualifications,
+    email,
+    devto,
+    x,
+    linkedin,
+    github,
+    location,
+  } = siteMetadata
   return (
     <div>
       <div className="flex flex-row items-center justify-center space-x-2 pb-8">
@@ -21,11 +32,19 @@ const AuthorCard = ({ content }) => {
         )}
         <div>
           <h3 className="pb-2 pt-4  text-2xl font-bold leading-8 tracking-tight sm:text-3xl md:text-4xl">
-            {author}
+            <RoughNotation
+              type="underline"
+              show={true}
+              color="#FFb900"
+              animationDelay={1400}
+              animationDuration={1200}
+            >
+              {author}
+            </RoughNotation>
           </h3>
           <div className="md:text-md text-base text-gray-500 dark:text-gray-400">{occupation}</div>
           <div className="md:text-md text-base text-primary-500 dark:text-primary-400">
-            {company}
+            {qualifications}
           </div>
           <div className="md:text-md text-base text-gray-500 dark:text-gray-400">{location}</div>
           <div className="flex space-x-3 pt-6">
@@ -40,8 +59,18 @@ const AuthorCard = ({ content }) => {
       <div className="flex max-w-full flex-col">
         <div className="prose max-w-full pb-8 pt-10 dark:prose-invert xl:text-xl">
           <p>
-            A dedicated Security Engineer focused on safeguarding enterprise applications and cloud
-            environments through rigorous risk assessments and innovative security solutions.
+            I'm a dedicated{' '}
+            <RoughNotation
+              type="circle"
+              show={true}
+              color="#f43f5e"
+              animationDelay={1700}
+              animationDuration={1200}
+            >
+              Security Engineer{' '}
+            </RoughNotation>
+            focused on safeguarding enterprise applications and cloud environments through rigorous
+            risk assessments and innovative security solutions.
           </p>
           <div className="py-4">
             <span className="m-2 inline-block rounded-full bg-teal-200 px-2 py-1 text-sm text-teal-900">

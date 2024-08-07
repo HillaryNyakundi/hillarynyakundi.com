@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Benson Macharia',
   avatar: '/static/images/avatar.png',
   occupation: 'Security Engineer',
-  company: 'MSc. | CISSP | CISA',
+  qualifications: 'MSc. | CISSP | CISA',
   headerTitle: 'Benson Macharia',
   location: 'Nairobi, KE',
   openToWork: true,
@@ -14,7 +14,7 @@ const siteMetadata = {
   theme: 'system', // system, dark or light
   siteUrl: 'https://bmacharia.com/',
   analyticsURL: 'https://cloud.umami.is/share/YFlsghokJZeRDaDI/bmacharia.com',
-  siteRepo: 'https://github.com/bensonmacharia',
+  siteRepo: 'https://github.com/bensonmacharia/bmacharia.com',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   // mastodon: 'https://mastodon.social/@mastodonuser',
