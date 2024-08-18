@@ -1,0 +1,195 @@
+---
+title: 'AWS Bedrock: Securing LLMs with Token-Based Authentication'
+date: '2024-08-17'
+tags: ['Cloud', 'IAM', 'AI']
+draft: false
+summary: Implementing token-based authentication for an AWS bedrock API on AWS SAM
+images: ['/static/images/aws-bedrock-sam-api.png']
+authors: ['default']
+---
+
+As businesses increasingly integrate Large Language Models (LLMs) to streamline and enhance their operations, concerns about misuse and denial of service (DoS) attacks have become more prominent. These issues are highlighted in the [OWASP Top 10 for LLMs](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-slides-v1_0.pdf), underscoring the critical need for robust security measures. In this blog, we explore how token-based authentication and requests tracking can effectively secure AWS Bedrock LLMs, preventing unauthorized access, misuse and safeguarding against potential denial of service attacks [LLM04: Model Denial of Service](https://genai.owasp.org/llmrisk/llm04-model-denial-of-service/)
+
+![aws-bedrock-sam-app-design](/static/images/aws-bedrock-sam-app-design.png)
+
+In this project we are going to develop a serverless rest API using Python, AWS Lambda, DynamoDB, and AWS SAM. The API will leverage the power of BedRock and Cohere Large Language Models (LLMs) to allow users interact with it using natural language just like ChatGPT.
+
+## Let’s get started
+
+### Prerequisite
+
+- Basic skill in Python
+- AWS Account
+- AWS CLI
+- SAM CLI
+
+### AWS Bedrock Cohere LLMs configuration
+
+- Login into [AWS console](https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#). From all services home page, search Bedrock to go the Amazon Bedrock getting started page.
+- Click on Base models link from the left side panel to have a sneek peak at the base models available. In our case we will be using the [Command Cohere](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-cohere-command.html) model
+- Still on the left side panel, scroll down to open the model access page. From here, click on Enable all models button at the top and tick all the models under cohere(6) to request access only the models we require.
+- Click submit and wait for a few minutes for access to be granted to the command cohere models.
+
+![aws-bedrock-cohere-model](/static/images/aws-bedrock-cohere-model.png)
+
+### API Setup from the code repo
+
+```bash
+# clone the repo from github
+$ git clone https://github.com/bensonmacharia/aws-bedrock-sam-app.git
+$ cd aws-bedrock-sam-app
+# open in vscode IDE
+$ code .
+```
+
+### What's going on
+
+#### The _template.yaml_
+
+The `template.yaml` serves as the foundational configuration file for the serverless application in AWS SAM. In this case, we have provisioned an API Gateway `ChatRestApi`, a Secrets Manager `JWTUserTokenSecret` to safely keep our JWT token signing secret, two DynamoDB tables; one to store user data - `UsersTable` and another for stroring user prompts - `PromptsTable`. For PromptsTable we make use of a DynamoDB since a SimpleTable does not support GlobalSecondaryIndexes.
+We have also provisioned three Lambda functions; one for user registration `UserRegistrationFunction`, another one for user login `UserLoginFunction` and the final one for processing user prompts `SendPromptFunction`.
+
+#### The _src/handlers_
+
+We have two lambda handlers;
+
+1. _auth.py_
+
+- Handles user registration and login by processing user submitted json data (email and password) and storing it in the users DynamoDB table.
+- On registration, each user is assigned a unique random string id leveraging the uuid package.
+- After login, user is given a short lived token to use to access the chat.
+
+2. _chat.py_
+
+- Receives user prompt within the json request body and the bearer token from the authorization header, then the function validates the token before allowing the user to interact with the LLM model.
+- The `save_prompt` function strores user prompts into the prompts DynamoDB while the `count_prompts` function keeps track of the number of requests a user has sent in a day. We have caped this at 50 to prevent misuse of the API and model.
+
+#### The _utils.py_
+
+This holds our utility functions to faciliate token generation and validation, saving user prompts into the database and counting user prompts per day.
+
+## Deployment
+
+```bash
+$ sam validate
+$ sam build
+$ sam deploy --guided
+    Setting default arguments for 'sam deploy'
+	=========================================
+	Stack Name [sam-app]: sam-bedrock-app
+	AWS Region [us-east-1]: us-east-1
+	#Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+	Confirm changes before deploy [y/N]: y
+	#SAM needs permission to be able to create roles to connect to the resources in your template
+	Allow SAM CLI IAM role creation [Y/n]: Y
+	#Preserves the state of previously provisioned resources when an operation fails
+	Disable rollback [y/N]: N
+	UserRegistrationFunction may not have authorization defined, Is this okay? [y/N]: y
+	UserLoginFunction may not have authorization defined, Is this okay? [y/N]: y
+	SendPromptFunction may not have authorization defined, Is this okay? [y/N]: y
+	Save arguments to configuration file [Y/n]: Y
+	SAM configuration file [samconfig.toml]:
+	SAM configuration environment [default]:
+
+	Previewing CloudFormation changeset before deployment
+	======================================================
+	Deploy this changeset? [y/N]: y
+
+	CloudFormation outputs from deployed stack
+	------------------------------------
+	Outputs
+	------------------------------------
+	Key            ChatRestApiUrl
+	Description    API Gateway endpoint URL for Prod stage for chat application
+	Value          https://f67k42y2f4.execute-api.us-east-1.amazonaws.com/prod/
+	-------------------------------------
+
+Successfully created/updated stack - sam-bedrock-app in us-east-1
+
+```
+
+Note the key value url above, we will be using this for testing our API.
+
+## Testing
+
+We can use postman to test our application or even curl in terminal.
+
+1. Get the [postman collection](https://github.com/bensonmacharia/aws-bedrock-sam-app/blob/main/aws-bedrock-sam-api.postman_collection.json)
+
+- Import the collection.
+- Go to variables and change the base-url to match url mentioned above.
+- Populate the registration endpoint body data and submit the request.
+- Populate the same data as used in registration on the login endpoint and submit the request.
+- Record the token from the login request and add it into the variables under the auth-token variable.
+- Edit the prompt on the chat endpoint as required and submit to get the response. Notice the queries counter and balance thereof.
+
+<video controls>
+  <source src="/static/videos/aws-bedrock-api-postman-testing.webm" type="video/webm" />
+  Your browser does not support the video tag.
+</video>
+
+2. Testing with curl
+
+- User registration
+
+```bash
+# Request to register user
+$ curl -X POST --header "Content-Type: application/json" --data '{"email":"newemail@example.com", "password": "Test@Pass*1239"}' https://f67k42y2f4.execute-api.us-east-1.amazonaws.com/prod/v1/auth/user/register
+
+# Response to confirm user registration
+{
+	"id": "5d2f8fcd-85e2-4ff3-80bd-dc946c8501d7",
+ 	"email": "newemail@example.com",
+ 	"message": "Account created. Proceed to login to access the Chat"
+}
+```
+
+- User login
+
+```bash
+# Request for user login
+$ curl -X POST --header "Content-Type: application/json" --data '{"email":"newemail@example.com", "password": "Test@Pass*1239"}' https://f67k42y2f4.execute-api.us-east-1.amazonaws.com/prod/v1/auth/user/login
+
+# Response to confirm successful login and generate access token
+{
+	"statusCode": 200,
+ 	"email": "newemail@example.com",
+  	"message": "Successfully authenticated. Proceed to access the Chat",
+   	"token": "eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiNWQyZjhmY2QtODVlMi00ZmYzLTgwYmQtZGM5NDZjODUwMWQ3IiwgInVzZXIiOiAibmV3ZW1haWxAZXhhbXBsZS5jb20iLCAiaWF0IjogMTcyMzg4OTMzOCwgImV4cCI6IDE3MjM4OTI5Mzh9.YRJl9JSyUYyp8iWth1K8052kSEEJpfx1joLWoY97sSQ"
+}
+```
+
+- Chat
+
+```bash
+# Chat Request
+$ curl -X POST --header "Content-Type: application/json" --header "Authorization: Bearer eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJzdWIiOiAiNWQyZjhmY2QtODVlMi00ZmYzLTgwYmQtZGM5NDZjODUwMWQ3IiwgInVzZXIiOiAibmV3ZW1haWxAZXhhbXBsZS5jb20iLCAiaWF0IjogMTcyMzg4OTMzOCwgImV4cCI6IDE3MjM4OTI5Mzh9.YRJl9JSyUYyp8iWth1K8052kSEEJpfx1joLWoY97sSQ" --data '{"prompt":"Where is Lake Naivasha?"}' https://f67k42y2f4.execute-api.us-east-1.amazonaws.com/prod/v1/chat
+
+# Chat response
+{
+    "prompt": "Where is Lake Naivasha?",
+    "response": " Lake Naivasha is a freshwater lake located in the Rift Valley of Kenya. It is located about 90 kilometers (56 miles) northwest of Nairobi, the capital city of Kenya. The lake is part of the Great Rift Valley, a series of lakes and valleys formed by tectonic activity millions of years ago. \n\nLake Naivasha is a popular tourist destination due to its natural beauty and diverse wildlife. It is home to a variety of bird species, including flamingos, and is also a popular spot for boat tours and fishing. \n\nThe lake is surrounded by a number of national parks and nature reserves, including the Hell's Gate National Park, which is known for its diverse wildlife and hiking trails. \n\nLake Naivasha is also a popular destination for outdoor activities such as hiking, biking, and horseback riding. It is also a popular spot for camping and picnicking. \n\nThe lake is easily accessible from Nairobi by road, and there are a number of hotels and lodges located in the area. \n\nWould you like to know more about Lake Naivasha? ",
+    "queries": 1,
+    "balance": 49
+}
+```
+
+All the API calls are recorded in Amazon CloudWatch.
+
+## Clean Up
+
+Remember to clean up after you are done testing the application. Using SAM CLI you can:-
+
+```bash
+$ sam delete --stack-name sam-bedrock-app
+	Are you sure you want to delete the stack sam-bedrock-app in the region us-east-1 ? [y/N]: y
+	Are you sure you want to delete the folder sam-bedrock-app in S3 which contains the artifacts? [y/N]: y
+
+Deleted successfully
+```
+
+---
+
+> - This blog demonstrates the use a rate limit to cap the number of requests an individual user can make to the LLM model as way to prevent misuse or denial of service. A more granular approach can be taken where a limit can be enforced on the requests an individual user or IP address can make within a specific timeframe.
+
+> - Additional controls can include implementing input validation and sanitization to ensure user input adheres to defined limits and filters out any malicious content as well as continuously monitoring the resource utilization of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack.

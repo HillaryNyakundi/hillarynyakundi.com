@@ -55,6 +55,10 @@ const securityHeaders = [
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=()',
   },
+  {
+    key: 'Content-Security-Policy',
+    value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://us.umami.is;",
+  },
 ]
 
 const output = process.env.EXPORT ? 'export' : undefined
