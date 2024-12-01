@@ -67,41 +67,41 @@ const AuthorCard = ({ content }) => {
               animationDelay={1700}
               animationDuration={1200}
             >
-              Security Engineer{' '}
+              Front-end Engineer{' '}
             </RoughNotation>
-            focused on safeguarding enterprise applications and cloud environments through rigorous
-            risk assessments and innovative security solutions.
+            focused on designing enterprise web applications around an ecosystem that pushes for
+            sustainable, maintainable and scalable software.
           </p>
           <div className="py-4">
             <span className="m-2 inline-block rounded-full bg-teal-200 px-2 py-1 text-sm text-teal-900">
-              Application Security
+              Java
             </span>
             <span className="m-2 inline-block rounded-full  bg-indigo-200 px-2 py-1 text-sm text-indigo-900">
-              Cloud Security
+              JavaScript
             </span>
             <span className="m-2 inline-block rounded-full  bg-blue-200 px-2 py-1 text-sm text-blue-900">
-              DevSecOps
+              React.js
             </span>
             <span className="m-2 inline-block rounded-full  bg-purple-200 px-2 py-1 text-sm text-purple-900">
-              ISO 27001
+              Next.js
             </span>
             <span className="m-2 inline-block rounded-full  bg-red-200 px-2 py-1 text-sm text-red-900">
-              Red Team
+              Taiwindcss
             </span>
             <span className="m-2 inline-block rounded-full  bg-green-200 px-2 py-1 text-sm text-green-900">
-              Threat Modeling
+              Zod
             </span>
             <span className="m-2 inline-block rounded-full  bg-orange-200 px-2 py-1 text-sm text-orange-900">
-              Security Architecture
+              Shadcn UI
             </span>
             <span className="m-2 inline-block rounded-full  bg-fuchsia-200 px-2 py-1 text-sm text-fuchsia-900">
-              Vulnerability Assessment
+              UI & UX
             </span>
             <span className="m-2 inline-block rounded-full  bg-lime-200 px-2 py-1 text-sm text-lime-900">
-              Penetration Testing
+              Docker & Kubernetes
             </span>
             <span className="m-2 inline-block rounded-full  bg-amber-200 px-2 py-1 text-sm text-amber-900">
-              Compliance Management
+              Git
             </span>
           </div>
         </div>

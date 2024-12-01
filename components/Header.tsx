@@ -16,7 +16,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className="mr-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white dark:bg-primary-400">
-                <span className="text-xl font-bold">BM</span>
+                <span className="text-xl font-bold">HN</span>
               </div>
               {/* <Logo /> */}
             </div>
